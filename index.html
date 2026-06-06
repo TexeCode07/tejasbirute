@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tejas Birute</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0e0d0c;
+      --surface: #181715;
+      --border: #272523;
+      --ink: #f2ede4;
+      --body: #c0bbb2;
+      --muted: #7c7870;
+      --faint: #464340;
+      --accent: #e8a87c;
+      --accent-dim: rgba(232, 168, 124, 0.10);
+      --tag-bg: #1e1c1a;
+      --tag-fg: #8a8680;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Geist', sans-serif;
+      --tl-line: #2a2826;
+      --tl-dot: #3a3835;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #faf9f6;
+        --surface: #ffffff;
+        --border: #e8e5de;
+        --ink: #0f0e0c;
+        --body: #3a3830;
+        --muted: #6b6860;
+        --faint: #b0ada6;
+        --accent: #c96d2e;
+        --accent-dim: rgba(201, 109, 46, 0.10);
+        --tag-bg: #f0ede6;
+        --tag-fg: #5a5850;
+        --tl-line: #e0ddd5;
+        --tl-dot: #d0cdc5;
+      }
+    }
+
+    html {
+      font-size: 18.75px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .header-name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    nav a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+      background: var(--border);
+    }
+
+    nav a.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .header-icons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .header-icons a {
+      color: var(--faint);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+
+    .header-icons a:hover {
+      color: var(--accent);
+    }
+
+    .header-icons svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* Resume download button in header */
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.69rem;
+      font-weight: 500;
+      color: var(--accent) !important;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 4px 10px;
+      background: var(--accent-dim);
+      transition: background 0.15s, color 0.15s, border-color 0.15s !important;
+      letter-spacing: 0.02em;
+    }
+
+    .resume-btn:hover {
+      background: var(--accent) !important;
+      color: var(--bg) !important;
+    }
+
+    .resume-btn svg {
+      width: 12px !important;
+      height: 12px !important;
+      fill: none !important;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 64px 48px 120px;
+    }
+
+    .about {
+      margin-bottom: 88px;
+    }
+
+    .about-inner {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .about-text h2 {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 0.88rem;
+      color: var(--body);
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    .about-text a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-dim);
+      transition: border-color 0.15s;
+    }
+
+    .about-text a:hover {
+      border-color: var(--accent);
+    }
+
+    .inline-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .inline-links a {
+      font-size: 0.76rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+      border-bottom: none !important;
+    }
+
+    .inline-links a:hover {
+      color: var(--accent);
+      border-color: transparent !important;
+    }
+
+    .inline-links svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    /* Resume download in inline-links — accent styled */
+    .inline-links .resume-inline {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .inline-links .resume-inline svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .about-photo img {
+      width: 130px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+    }
+
+    .photo-placeholder {
+      width: 112px;
+      height: 134px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-bottom: 72px;
+    }
+
+    .section-title {
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 36px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: var(--tl-line);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .tl-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -28px;
+      top: 10px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--tl-dot);
+      border: 2.5px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--tl-line);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .tl-item:hover .tl-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .tl-item.edu .tl-dot {
+      width: 11px;
+      height: 11px;
+      left: -26px;
+      top: 12px;
+    }
+
+    .tl-item.edu:hover .tl-dot {
+      background: var(--faint);
+      box-shadow: 0 0 0 1px var(--faint);
+    }
+
+    .tl-logo {
+      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      overflow: hidden;
+    }
+
+    .tl-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    .tl-icon-sm {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .tl-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .tl-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 2px;
+    }
+
+    .tl-org {
+      font-size: 0.93rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .tl-date {
+      font-size: 0.71rem;
+      color: var(--faint);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tl-role {
+      font-size: 0.77rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .tl-desc {
+      font-size: 0.84rem;
+      color: var(--body);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .tl-desc-edu {
+      font-size: 0.81rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .tl-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 4px 10px;
+      background: var(--surface);
+      transition: all 0.15s;
+    }
+
+    .tl-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .tl-btn svg {
+      width: 11px;
+      height: 11px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      border: 1px solid var(--border);
+      letter-spacing: 0.02em;
+    }
+
+    /* PROJECTS — vertical list */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .project {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .project:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-thumb {
+      flex-shrink: 0;
+      width: 180px;
+      background: var(--tag-bg);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .project:hover .project-thumb img {
+      transform: scale(1.04);
+    }
+
+    .project-body {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .project-name {
+      font-size: 0.91rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 5px;
+    }
+
+    .project-desc {
+      font-size: 0.8rem;
+      color: var(--body);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.69rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 3px 9px;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .project-links a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .project-links a svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 52px;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .skill-label {
+      font-size: 0.64rem;
+      color: var(--faint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .skill-val {
+      font-size: 0.83rem;
+      color: var(--body);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    footer {
+      font-size: 0.71rem;
+      color: var(--faint);
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--faint);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--muted);
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        padding: 0 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      main {
+        padding: 32px 20px 60px;
+      }
+
+      .about-inner {
+        flex-direction: column-reverse;
+      }
+
+      .about-photo {
+        width: 76px;
+      }
+
+      .photo-placeholder {
+        width: 76px;
+        height: 92px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        flex-direction: column;
+      }
+
+      .project-thumb {
+        width: 100%;
+        height: 160px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .resume-btn span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="#" class="header-name">Tejas Birute</a>
+      <nav>
+        <a href="#about" class="active">About</a>
+        <a href="#timeline">Journey</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+      </nav>
+      <div class="header-icons">
+        <a href="mailto:tejas.birute47@gmail.com" title="Email">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/tejas-birute-880753181" target="_blank" title="LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-5 6a3 3 0 00-3 3v4h2v-4a1 1 0 011-1 1 1 0 011 1v4h2v-4a3 3 0 00-3-3zm-5 0H7v7h2V9zm-1-2a1 1 0 110 2 1 1 0 010-2z" />
+          </svg>
+        </a>
+        <!-- X (Twitter) -->
+        <a href="https://x.com/BiruteTejas" target="_blank" title="X / Twitter">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L2.1 2.25h6.908l4.26 5.632 4.976-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/TexeCode07" title="GitHub">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z" />
+          </svg>
+        </a>
+        <!-- Resume Download -->
+        <a href="Tejas_Birute_Resume.pdf" download class="resume-btn" title="Download Resume">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          <span>Resume</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div class="about-text">
+          <h2>Hi, I'm Tejas.</h2>
+          <p>
+            I'm a Mechatronics Engineer who enjoys solving engineering problems across hardware and software. My work
+            spans IoT, embedded systems, electronics design, firmware development, mobile applications, and connected
+            products.
+          </p>
+
+          <p>
+            I enjoy turning ideas into working prototypes — researching technologies, evaluating technical approaches,
+            building proof-of-concepts, and developing complete systems from electronics and firmware to cloud
+            connectivity and user interfaces.
+          </p>
+
+          <p>
+            Beyond my professional work, I'm constantly exploring robotics, AI, embedded computing, sensors,
+            communication systems, and emerging hardware. I enjoy building gadgets, experimenting with new technologies,
+            and understanding how complex systems work.
+          </p>
+
+          <p>
+            I'm always fascinated by technologies that push the boundaries of exploration and innovation.
+          </p>
+        </div>
+        <div class="about-photo">
+          <img src="images/profile.jpg" alt="Tejas Birute">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <p class="section-title">Journey</p>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-logo"><img src="images/escapeverse_logo.png" alt="Escapeverse" onerror="this.textContent='🎭'">
+          </div>
+          <div class="tl-content">
+            <div class="tl-head">
+              <span class="tl-org">Escapeverse</span>
+              <span class="tl-date">Oct 2025 – Mar 2026</span>
+            </div>
+            <div class="tl-role">Embedded Software Engineer · Thane</div>
+            <p class="tl-desc">
+              Engineered interactive electronic puzzles across five escape room themes using embedded systems, custom
+              electronics, sound, lighting, and access-control mechanisms.
+            </p>
+            <div class="tl-links">
+              <a href="https://escapeverse.in/" target="_blank" class="tl-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                Website
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-logo"><img src="images/artscape_logo.png" alt="ArtScape" onerror="this.textContent='🎨'"></div>
+          <div class="tl-content">
+            <div class="tl-head">
+              <span class="tl-org">ArtScape · OTA Innovation</span>
+              <span class="tl-date">Jan – Aug 2025</span>
+            </div>
+            <div class="tl-role">IoT Software Engineer · Hyderabad</div>
+            <p class="tl-desc">Led end-to-end development of a Kinetic Sand Art Table — drawing Algorithm, 3D CAD, PCB
+              design, Marlin/GRBL
+              firmware, and IoT integration. Evaluated 3 hardware prototypes through comparative CNC firmware
+              analysis for long-duration reliability.</p>
+            <div class="tl-links">
+              <a href="https://artscapestudio.in/" target="_blank" class="tl-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                Website
+              </a>
+              <a href="https://www.instagram.com/art_scape_studio/" target="_blank" class="tl-btn">
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-logo" style="font-size:1.1rem;">🌍</div>
+          <div class="tl-content">
+            <div class="tl-head">
+              <span class="tl-org">Freelance</span>
+              <span class="tl-date">May 2022 – Dec 2024</span>
+            </div>
+            <div class="tl-role">IoT Software Engineer · Remote </div>
+            <p class="tl-desc">• Designed and deployed a Mushroom Incubation Chamber with automated climate control
+              (lights, irrigation, gas, humidity, temperature, soil sensors, and camera) and a Darbuka Drum Synthesizer
+              with real-time sensor-driven sound generation for Yacov Biofcic, ERND.tech (Israel).</p>
+            <p class="tl-desc">• Developed a mesh network-based Tyre Alignment device for Frank, GP24.ro (Romania),
+              enabling multi-node wireless communication for real-time wheel alignment diagnostics.</p>
+            <p class="tl-desc">• Built a motorsport tyre temperature monitoring IoT device for Bernd Ordemann, a German
+              race engineer, delivering thermal data acquisition and on-track performance analysis.</p>
+            <p class="tl-desc">• Developed dynamic data and list management functionality on DWIN HMI displays for
+              industrial user interfaces.</p>
+            <p class="tl-desc">• Built a GPS coordinate-based object tracking system for surfers using the Haversine
+              formula for bearing-angle navigation and target tracking.</p>
+            <p class="tl-desc">• Designed a local web-based dashboard for AC/DC electrical calculations, including
+              voltage, current, and power analysis with a clean, user-friendly interface.</p>
+          </div>
+        </div>
+
+        <div class="tl-item edu">
+          <div class="tl-dot"></div>
+          <div class="tl-icon-sm">🎓</div>
+          <div class="tl-content">
+            <div class="tl-head">
+              <span class="tl-org" style="font-size:0.87rem;">Parul University, Vadodara</span>
+              <span class="tl-date">2023</span>
+            </div>
+            <div class="tl-desc-edu">B.Tech · Mechatronics Engineering</div>
+            <p class="tl-desc">Participated in Smart India Hackathon; developed a portable washing machine that
+              incubated at college; performed ANSYS simulation on MEMS sensors; MATLAB & Simulink for simulation and
+              modelling of control system; learned CATIA for CAD design; worked on
+              thrust pad and solid rocket motor ignition systems; and built a CanSat prototype.</p>
+          </div>
+        </div>
+
+        <div class="tl-item edu">
+          <div class="tl-dot"></div>
+          <div class="tl-icon-sm">📐</div>
+          <div class="tl-content">
+            <div class="tl-head">
+              <span class="tl-org" style="font-size:0.87rem;">Indo-German Tool Room, Chh. Sambhajinagar</span>
+              <span class="tl-date">2020</span>
+            </div>
+            <div class="tl-desc-edu">Diploma · Mechatronics Engineering</div>
+            <p class="tl-desc">Worked on Modular Production System Kit by FESTO. Worked on Robotino Robot. VFD Drive
+              kit. Learned Pnuematic Hydraulic circuit design. Worked on Siemens PLC Ladder logic programing.Learned
+              8051 micocontroller programming with Assembly Language. Made a basic digital logic gate circuit. Panneling
+              design with EPLAN. Worked on CNC Lathe milling machine and workshop operations; AutoCAD for 2d design </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <p class="section-title">Projects</p>
+      <div class="projects-list">
+
+        <div class="project">
+          <div class="project-thumb">
+            <img src="images/doser.png" alt="Multi-Doser" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <div class="project-name">Multi-Doser IoT System</div>
+            <p class="project-desc">Multi-channel automated dosing machine with Wi-Fi provisioning, Firebase cloud, and
+              an Android app for scheduling, pump calibration, and multi-machine management.</p>
+            <div class="tl-tags">
+              <span class="tag">ESP32</span><span class="tag">Firebase</span><span class="tag">Android</span><span
+                class="tag">MQTT</span>
+            </div>
+            <div class="project-links">
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                </svg>GitHub</a>
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-thumb">
+            <img src="images/odoursenseor.png" alt="E-Nose" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <div class="project-name">Artificial E-Nose</div>
+            <p class="project-desc">On-device odor classification using gas sensors and a TinyML model trained via Edge
+              Impulse. Real-time scent recognition with no cloud dependency.</p>
+            <div class="tl-tags">
+              <span class="tag">TinyML</span><span class="tag">Edge Impulse</span><span class="tag">ESP32</span><span
+                class="tag">C++</span>
+            </div>
+            <div class="project-links">
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                </svg>GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-thumb">
+            <img src="images/weightscale.jpg" alt="Smart Weight Scale" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <div class="project-name">Smart Weight Scale</div>
+            <p class="project-desc">Digital weighing system on ESP32 with a CYD touchscreen — real-time measurement,
+              calibration routines, and an LVGL-based UI.</p>
+            <div class="tl-tags">
+              <span class="tag">ESP32</span><span class="tag">LVGL</span><span class="tag">C++</span>
+            </div>
+            <div class="project-links">
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                </svg>GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-thumb">
+            <img src="images/tyretemp.png" alt="Motorsport Tyre Monitor" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <div class="project-name">Motorsport Tyre Monitor</div>
+            <p class="project-desc">Wireless thermal data acquisition for race track use — real-time tyre temperature
+              analytics for pit engineers and on-track performance decisions.</p>
+            <div class="tl-tags">
+              <span class="tag">ESP32</span><span class="tag">LoRa</span><span class="tag">IoT</span>
+            </div>
+            <div class="project-links">
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-thumb">
+            <img src="images/geofencing.png" alt="Geofencing" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <div class="project-name">Geofence prototype</div>
+            <p class="project-desc">With the help of opensource Thingboards cloud platform created geofecning gps
+              location based Alarm system.</p>
+            <div class="tl-tags">
+              <span class="tag">Thingsboard</span><span class="tag">EC200U</span><span class="tag">IoT</span>
+            </div>
+            <div class="project-links">
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project">
+          <div class="project-thumb">
+            <img src="images/dwin.jpg" alt="Dwin Medical dispaly" onerror="this.style.display='none'">
+          </div>
+          <div class="project-body">
+            <div class="project-name">Dwin Medical display</div>
+            <p class="project-desc">7 inch Dwin HMI interfaced UART communication with stm32f1 and showing dynamic data
+              list in GUI display </p>
+            <div class="tl-tags">
+              <span class="tag">STM32F1</span><span class="tag">Dwin HMI</span><span class="tag">UART</span>
+            </div>
+            <div class="project-links">
+              <a href="#"><svg viewBox="0 0 24 24">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>Details</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <p class="section-title">Skills</p>
+      <div class="skills-grid">
+        <div class="skill-row">
+          <span class="skill-label">Languages</span>
+          <span class="skill-val">C/C++, Python, Java, Dart, PHP, MATLAB</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Embedded Hardware</span>
+          <span class="skill-val">ESP32, ESP32-CAM, ESP32-CYD, M5Stack Dial, ESP32-Lilygo7600G-H, ESP32-S3-Quectel
+            EC200U, ESP8266, STM32F1, STM32F4, ATTINY85, nRF52840</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Embedded Framework</span>
+          <span class="skill-val">ESP-IDF, Arduino-ESP32, Marlin, GRBL, LVGL, LoRa, Bluetooth BLE, Matter, MQTT</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Mobile & Web</span>
+          <span class="skill-val">Android (Java), Flutter, HTML/CSS/JS, PHP</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Cloud & IoT</span>
+          <span class="skill-val">Firebase, MySQL, InfluxDB, AWS S3, ThingsBoard, Grafana, Edge Impulse, Blynk</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-label">Hardware</span>
+          <span class="skill-val">PCB Design, Fusion 360, ANSYS, SquareLine Studio</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>Tejas Birute · <a href="mailto:tejas.birute47@gmail.com">tejas.birute47@gmail.com</a></footer>
+  </main>
+
+  <script>
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.classList.remove('active'));
+          const a = document.querySelector('nav a[href="#' + e.target.id + '"]');
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => obs.observe(s));
+  </script>
+
+</body>
+
+</html>
